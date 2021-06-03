@@ -1,0 +1,147 @@
+
+
+Android Development for Beginners - Full Course 
+FreeCodeCamp.org 
+
+Notes
+
+Activity
+    Our Apps has many parts, we can think of an activity as a page for that part
+    This definition is not 100% correct, activity more in detailed studied later
+    as the course goes ahead
+
+.xml file and activity file 
+    .xml file is the file where we specify the layout for the App
+    activity file is the file which tells what happens if there's an 
+    action on the .xml's layout
+
+build window
+    here we can see the progress/phase of the app as it grows
+    from here we can locate problems in our app
+
+resources folder {res}
+    it has resources like app logo, app images all static components are placed 
+    here
+
+manifest file
+    specifies general properties for the application
+    ie: name and logo of the application info is placed here 
+    other properties and features of the app are placed here
+
+gradle files 
+    when we want to download the app from the playstore
+    then only one apk file is downloaded for our app
+    how to generate that apk file, for that this gradle tool is used 
+    Gradle is the build tool that will combine all the gradle files 
+    and will create an apk file, for testing on emulator or exporting it 
+    on playstore, Also we use it to use other people's code, say we want code for 
+    youtube file, then we add it's dependencies in the build.gradle file, thus gradle
+    will download the code for youtube player and genearte the code for it
+    so that we can use it
+
+
+TODO window
+    the things that we have to implement in the app in future and we don't want 
+    to forget so we can add a todo
+    // TODO: text
+    we can find them in project window and seperately in todo window
+
+Logcat 
+    helpful in debugging our application
+
+# if we get some warnings or errors in running application then we can 
+# select the build option and select Make Project
+# Closing and reopening the application will also work
+# we can also go to files and invalidate the cache and restart to solve such issues
+
+Profiler
+    go to view-tool window-Profiler
+    This is the tool which shows how our app uses resources 
+    ie: network, cpu, ram etc 
+
+.xml file {contents}
+    it has two views, white and blue print views of application
+    white one is called DESIGN view
+    If we have an invisible component in layout of our app
+    then we can keep track of it using blue print view it's not visible 
+    in design view
+
+Pallet view in xml
+    here we can add ui elements to our app, each element has attributes 
+    which we can add, and id associated with it, with which we can control this 
+    element form the activity file,
+    
+XML views 
+    it has two types of views
+        1] Design view where theres' gui basesd id and attirbute selection
+        2] Text view here we can add by typing values to each attirbute
+    xml is a markup language
+    markup language are just for defining some elements that user is going to see 
+    ie: button and text etc
+    -> we can add button with gui based selection
+    -> Or we can type in xml markup language to add the button
+    # we cannot use space giving id to components 
+    # also we cannot use #,$ etc characters     
+    -> Conventions = first character lower cases and after the first word
+    we type in capital letters after each word
+
+Giving constraints to the components in xml
+    It's important to specify xml constraints, if we don't specify them
+    then the component location won't be fixed during run time, mainly it goes 
+    to 0th index on the screen {at the top}
+    This is because we are using .ConstraintLayout
+
+
+Inside Activity File 
+    The onCreate function is the starting point of our application
+    whatever is written in the curly braces in the onCreate function
+    will be executed first
+    The setContentView() function is the function which connects our 
+    .xml file with the activity file, this shows that these two files are somehow
+    related to each other
+
+Using TextView
+    In java we have classes that are similar to the ui components in the 
+    xml file, these classes can be used to display the ui components
+
+way -> 
+    First Create a TextView object
+        TextView name_obj;
+    Now find the Ui component from the xml file and connect it with This object
+        TextView name_obj = findViewById(R.id.NAME_OF_ID_OF_UI_IN_LAYOUT_FILE);
+        R class in java android, stands for resources, by this we can have
+        acces to all static resources in java, like ui components from the xml file
+
+        now we can say  
+            name_obj.setText("new text that we want");
+
+        this will change the text and display what we want 
+
+    Now we want to change this text when we press a button 
+    thus we do this using eventListner
+    We firs go to xml file and select appropriate ui component
+    then we add an onClick into it and specify the method name there
+    this method name is created outside the scope of onCreate 
+    and inside MainActivity, and we specify what happens after clicking this 
+    button here in this method
+
+    Now we want to take the text from the user and show it up on the screen 
+    for taking the text from the user we use EditText
+    way
+        EditText edtText = findViewById(R.id.editTextTextPersonName);
+        edtText.getText().toString();   
+
+    VVVVVIMP 
+        Scope of the editText is only in the onCrete function
+        we cannot use it outside this function
+        ie: we cannot define it in onCreate and use it outside it
+        so to solve this we do declaration and definition both inside in the 
+        function outside the onCreate
+    way- Function outside onCreate
+        public void changeText(View view) {
+        TextView txtView = findViewById(R.id.textView);
+        EditText edtText = findViewById(R.id.editTextTextPersonName);
+        txtView.setText("hello " + edtText.getText().toString());
+    }
+
+    
