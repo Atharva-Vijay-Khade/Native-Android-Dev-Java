@@ -145,3 +145,97 @@ way ->
     }
 
     
+__________________________JAVA_______________________________
+
+java ide's - intelliJ, Ecplise
+
+Android Studio is built upon the intelliJ IDE, So they both look very similar
+
+-> Printing Statement in java
+
+System.out.println("asijioajsdfoij"); - prints the string and inserts a new line
+System.out.print("hioasdfhoi"); - prints and no new line, continous printing
+
+comments //,
+         // TODO Do something -> addeds the todos' and useful in Development
+
+variables
+    storing data in java application
+    int number = 5;    // small integers 2^31
+    System.out.println(number);   
+    long myLong = 5; // stores large numbers 2^63
+    
+    #imp for floating numbers we write
+    float myFloat = (float) 4.5;
+    casting is required 
+
+    double myDouble = 4.5; // stores larger values than float
+
+    char myChar = 'c';
+    we can also store special characters in myChar by using special unicodes
+
+    String name = "Meisam";  // String is a class but upper all are primitive data types
+
+    boolean myBoolean = false; // takes only true of false values
+
+Operators in Java
+
+    Arithmetic Operators
+
+        int a = 6;
+        int b = 2;
+        int answer = a + b;
+        int answer2 = a - b;
+        int answer3 = a / b;  // b!= 0 handle this exception, or application will crash
+        int answer4 = a * b;
+        int answer5 = a % b;
+
+        double answer = (double) a/b; // integer division 
+        // but this will take a/b exact value as if a = 5 and b = 2
+        // answer will be 2.5
+        // this is different from C/C++
+
+        String firstName = "Hello";
+        String lastName = "Bye";
+        we can use + operator to concatinate the above two strings
+        String fullName = firstName + lastName;
+        System.out.println(fullName);
+        
+        int a = 5;
+        a = a + 2;
+        or we could say
+        a+=2;
+        both are same
+
+        for increment 
+        a++;
+        or 
+        a = a + 1;
+        same goes for minus
+
+        ShortHand Notations
+        +=
+        -=
+        /=
+        *=
+        %= 
+    
+    Relational Operators in Java
+
+        GreaterThan > /LessThan < operator
+            boolean answer = a>b;
+            boolean answer2 = a<b;  
+        Euquality Operators
+            boolean answer = a==b;
+        Comparison Operators
+            boolean answer = a>=b;
+            boolean answer = a<=b;
+            boolean answer = a!=b;
+    
+    Logical Operators in Java   
+
+        boolean answer = a==5 || b==2; // OR operator
+        boolean answer = a==5&&b==2; // And Operator
+        
+
+ 
