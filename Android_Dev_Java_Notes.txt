@@ -383,4 +383,109 @@ ________________________________________________________________________________
     
 Object Oriented Programming in JAVA - VVVVVIMP
 
+-> we have a main class, which has the main function 
+-> this is the starting point of the application
+-> we can now create packages and create classes which we can instantiate in this function
+-> access specifiers are very essential to be known
+
+-> once we create a class in other package, and create class there
+then we can have get and set methods there manually added by us to update the variables
+
+-> but java allows us to have getters and setters which will automatically come once we tell the ide
+these are used to initialized the variables used in classes or change variable values or get the values
+
+-> one of the best use case of getters and setters is encapsulation, data hiding 
+-> Or we can have a validation using getters and setters for data fields
+
+This is one way to initialize fields in java
+other best way is using constructor
+
+visibility of constructor also matters, as other package classes can also access it 
+
+constructor overloading is allowed in java constructors => also refered to one type of polymorphism in java
+
+-> INHERITANCE {IMP}
+    Allows reusability of code
+    super mehthod is important in initialization of parent class fields
+    super is used in both constructors and the functions which are overrided
+    if we have a base class and it has a method say fun(int a)
+    then we can have same method in sub class fun(int a) which can 
+    perform different functionality, this is also example of polymorphism in java 
+    here super is used to initialize field of parent fun(int a) so by default that will also be 
+    called if super is there, if we remove super then dominantly, the function fun(int a) of base 
+    class is called and not both
+
+-> Composition of differnet objects in a class 
+
+ie : 
+
+package p1;                                                 
+
+public class Engine {
+    //fields 
+    public Engine(fields) {
+        //constructor
+    }
+}
+
+now in other package, parent package of p1 mainly
+
+package p2;
+
+public class Car {
+    //fields normal
+    private Engine engine;
+    Car(fields,Engine engine){
+        //other fields
+        this.engine = engine;
+    }
+}
+
+now we can use this class engine inside class Car, this is composition of objects in other class
+
+hovere comments in java are mainly due to 
+/**                          this is how when we hover and press ctrl we see comments of whats there in this field
+ * comments 
+ *
+ *@return 
+ */ 
+
+ if we want to instantiate objects for a class in future then we can presently reference to that 
+ object as null
+
+ie : Engine engine = null;
+     here if we try to call method using engine reference
+     then it will give null pointer exception which will crash our Program
+     # this is a runtime error not compile time error
+
+     this is handeled using 
+
+     if(engine != null){
+        // call method on that 
+     }
+     else {
+        //print engine being null message
+     }
+
+=> FINAL keyword
+
+    int a = 5;
+    a = a+1;
+    this is valid 
+
+    but,
+    final int a = 5;
+    a = a+1;
+    this is not valid 
+    as variables declared as final can't be 
+    reassigned to other values, this will give error 
+
+    final Engine engine = new Engine(rpm:9000,name:"renault");
+    engine = new Engine(rpm:1000,name:"renault");
+    this will give error as we are changing the entire instance
+    but we can change it's properties
+    ie: 
+    engine.setRpm(6000);//this is valid for final preceded variables
+
+    
 
