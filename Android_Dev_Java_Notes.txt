@@ -236,6 +236,106 @@ Operators in Java
 
         boolean answer = a==5 || b==2; // OR operator
         boolean answer = a==5&&b==2; // And Operator
-        
 
+    Conditional Statements
+
+        if(a>3)  {
+            System.out.println("a is greater than 3");
+        }
+
+        System.out.println("continues here..");
+        
+        if(condition){
+            //code if condition true
+        }
+        else {
+            // if condition is false
+        }
+
+        we can also wirte 
+        if(!condition) {
+            //if condition not true
+        }
+        else {
+            // if condition is true
+        }
+
+        we can have else if 
+
+        if(a>3){
+            //
+        }
+        else if(a<0){
+
+        }
+        else if(a==0){
+
+        }
+        else{
+
+        }
+
+        switch(a){
+            case 1:
+                System.out.println("A is one");
+                break;
+            case 2:
+                //
+                break;
+            case 3:
+                //
+                break;
+            default:
+                //
+                break;
+        }
+
+        loops in java
+
+        1] for loops    
+            int a = 10;
+            //use 10 or a in for loop
+            for(int i=0;i<10;i++){
+                System.out.println(i);
+            }
+
+        2] while loop   
+            while(a<10){  // infinite loop
+                //
+            }
+            // so change value of a in the while loop
+
+            break; 
+            and continue; 
+            in the loop
+
+            int a = 5;
+            while(a<10){
+                a++;
+                if(a==8)
+                    continue;
+                System.out.print(a);
+            }
+
+        3] Do while loop
+            do {
+                System.out.print("Hello");
+            }while(a<5);
+
+        To take input 
+
+        System.out.println("Please enter number");
+        Scanner scanner = new scanner(System.in);
+        int answer = scanner.nextInt();
+        System.out.print("Ansewer was : " + answer);
+        
+        String name = scanner.next();
+        // to take name which is string
+
+        Generating random number 
+
+        Random random = new Random(); // generates random number from 0 to 19 both inclusive
+        int number = random.nextInt(bound : 20);
+
+        
  
