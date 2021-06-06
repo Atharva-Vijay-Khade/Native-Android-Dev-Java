@@ -904,5 +904,119 @@ DataBase {  //using singleton pattern
 
 Object used above will be {
     arraylist;//for numbers;
-    arrylist;//for messages;
+    arrylist0;//for messages;
 }
+
+________________________________________________USER INTERFACE______________________________________________
+
+
+Firstly we are using relative layout in xml file 
+
+<TextView 
+    fields..
+    ie:center_Horizontal="true"
+    ie:centerInParent="true"
+    ie:testSize:"20sp"
+    ie:textStyle="bold|italic"
+    textColor="@color/colorAccent"
+    we can also pass it from color picker
+    ie:id="@+id/txtWelcome"// should be unique
+    
+    <Button 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" // this is useful that specifing values, because it will be same in all mobile devices
+        android:text="Say hello"
+        android:layout_below:"@+id/txtWelcome"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:onClick="onHelloBtnClick" -> make this function in main activity
+    />
+/>
+
+public void onHelloBtnClick(View view) {
+
+    TextView txtView = findViewById(R.id.txtWelcome);
+    txtView.setText("hello again");
+
+}
+
+
+--------
+Another way
+
+<Button
+    wrap_content
+    text="say Hello"
+    layout_centerInParent="true"
+    id="@+id/btnHello"
+    onClick=""
+/>
+
+in onCreate 
+
+# here we need to use interface View.onClickListener
+
+Button btnHello = findViewById(R.id.btnHello);
+btnHello.setOnClickListener(new View.onClickListener(){
+    @override 
+    public void onClick(View v){
+        System.out.println("hello");
+    }
+});
+
+flow-> 
+
+first we have a button 
+btnHello = findViewById(R.id.btnHello);
+//now setup an onClickListner for that button
+btnHello.onClickListner();
+// now pass interface into it 
+
+btnHello.onClickListner(new View.onClickListener(){
+    //now override onClick function for that interface
+    public void onClickView(View v){
+        System.out.println("hello");
+    }
+});
+
+Another way
+
+public class MainActiivity extends AppCompatActivity implements View.onClickListener {
+
+
+    @override
+    public void onClick(View v){
+        switch(v.getId()){
+            case R.id.btnHello:
+            System.out.println("hello");
+            break;
+            default:
+                break;
+        }
+    }
+
+    //now in onCreate
+    Button btnHello = findViewById(R.id.btnHello);
+    btnHello.setOnClickListener(this);
+
+}
+
+Flow-> first of all in the onCreate we setup a onClickListener for this button
+then when any component on UI is clicked then onClick method is triggered
+according to switch case and id matching the case is selected
+
+We can use Toast.makeText(context:this, text:"Hello button clicked",Toast.LENGTH_SHORT).show();
+it shows up a pop up message
+
+As of now we refer context to the current activity that we are on
+
+Actually a Button is a View, every UI element is a View
+thus we specify View inside onClick function
+
+# check on it's implementation
+
+we can add multiple such UI components and pass them to onClick 
+or implement it using View.on_____Listener
+
+
+
