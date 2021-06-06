@@ -755,4 +755,154 @@ in main {
 interface and abstract classes
 
 
+____________Concurrency in java______________
 
+Concurrency meaning -> Doing things at same time in Programming
+
+ie : multithreading 
+
+Thread is unit of execution in cpu or processor
+threads are programs are handeled by the cpu
+there is main thread in our application, by default
+also called as UI thread, if we want other background thread
+we can crate other thread
+
+Thread thread = new Thread(new Runnable(){
+    @override 
+    public void run() {
+        System.out.println("hello from anther thread");
+    }
+});
+thread.start();    // run method of Runnable() class tells what the thread does
+
+this is one way, we also have other way of defining a thread
+
+// Sleeping a thread
+
+Thread.sleep(1000); time in milliseconds
+// this Thread refer to that thread in which we are currently in 
+
+UI thread -> has as many worker thread as we can
+
+the main thread is the UI thread 
+
+
+// Exceptions in java
+
+1] Generic Exceptions
+try{
+    //{no need of throwing, if it occur it is auto thrown}
+}
+catch(Exception e){
+    //handel
+}
+
+2] Arithmetic Exceptions 
+try{
+    a= a/b; //if b==0 it throws arithmetic exception
+}
+catch(ArithmeticException e){
+    // handel
+}
+
+3] Interrupted Exceptions 
+try{
+    Thread.sleep(1000);
+}
+catch(InterruptedException e){  // occur when current thread is interrupted, ie: when a thread is running and at the same a phone call comes then we need to handel it other wise it will crash the application
+    //handel
+}
+
+4] Null pointer exception
+String name = null;
+try{
+    null.length;
+}
+catch(NullPointerException e){
+    //
+}
+
+// useful method for debuggin 
+
+catch(Exception e){
+    e.printStackStrace(); // print something in console for help in debugging
+}
+
+
+
+
+
+
+
+______________________Singleton Pattern___________________________
+
+// we use it when we know that we have only one instance of a class 
+
+// ie : during using DataBase
+
+public class Database {
+
+    private String name;
+
+    private static Database instance;
+
+    public static Database getInstance(String name) {
+        if(null == instance) {
+            instance = new Database("name");
+            return instance;
+        }
+        else{
+            return instance;
+        }
+    }
+
+    constructor();
+    getter and setter;
+
+
+}
+
+// whenever in the main or in other class we say
+
+Database database = Database.getInstance("name");
+then only one instance will be maintained, new instances won't be made
+
+thus only one instance of the class is created
+
+but we can still instansiate the database class
+
+so solution is that we declare the constructor of the database as private
+
+but still there is a problem, multiple threads can create multiple instances
+of the same class asynchrounously, so for that we use 
+
+public static synchronized Database getInstance(String name) {
+    //
+}
+
+synchronized key word-> now only one thread can create the instance of the class
+=> This is singleton pattern in java
+
+// toString() method is present for every class's object,
+we can override it inside the class to get result that we want
+
+// Complete Java Challenge part 1
+
+idea->  
+
+DataBase {  //using singleton pattern
+
+    Map<String,Object> {
+        user1: Oject(arraylistofContactNumbers,messageList);
+        user2: same;
+        user3: same;
+        user4: same;
+        ...
+    }
+
+}
+
+Object used above will be {
+    arraylist;//for numbers;
+    arrylist;//for messages;
+}
