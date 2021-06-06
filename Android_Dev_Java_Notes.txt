@@ -487,5 +487,272 @@ ie : Engine engine = null;
     ie: 
     engine.setRpm(6000);//this is valid for final preceded variables
 
+
+____________Collections in java______________ 
+
+String names[] = new Strings[5];
+String names[] = {"hello","bye"};
+
+size is immutable, meaning size cannot be changed 
+so we cannot say names[2] in string of size 2
+exception generated array out of bounds error
+
+so if we want to add new element in array then 
+we have to start all over again creating new array 
+and copy pasting all elements back in new array and 
+then add the new element in array
+
+-> this is time consuming and resource consuming process
+
+Thus we use COLLECTIONS IN JAVA
+
+
+1] ArrayList
+
+    ->ArrayList<String> names = new ArrayList<>();
+    -one way to define array list of strings in java
     
+    ->List<String> students = new ArrayList<>();    
+    -other way to define array list in java
+method = names.add("Meisam");
+now size is mutable, that means we can add as many strings 
+as we can 
+
+method = names.get(index); to retrive element at that index
+       = names.size();
+       = names.clear();
+       = names.remove("Meisam"); // remove entry Meisam from the array list 
+       -> it's like a vector in C++
+       = names.contains("string");
+       = names.isEmpty();
+       = names.indexOf("req String"); // prints index of the given string in array list, if no such elements -1 is returned
+
+> ArrayList can be of primitive data types 
+> ie: ArrayList<int> i = new ArrayList<>();
+  this is not valid in java
+  we cannot have a list of primitive data types
+  thus we equivalent, java class, ie: Integer for int
+  ArrayList<Integer> names = new ArrayList<>();
+  ArrayList<Double> names = "";
+  same for other data types
+
+>names.sort(compartor);
+
+// Printing the elements in arraylist using index in java
+for(int i=0;i<names.size;i++){
+    System.out.println(names.get(i));
+}
+
+Colletion MAP in java
+
+Map<key,value> name;
+
+ie: Map<String,String> contacts = new Map;
+    this is one way, with lots of functions coming up
+
+    better way
+    Map<String,String> contacts = new HashMap<>();
+    contacts.put("Meisam","Meisam@meicode.org");
+    contacts.put("Brad","Brad@gmail.com");
+    System.out.println("contacts.get("Meisam"));
+    -> gets the email address of Meisam
+
+    For maps also, Map<int,int> is not valid 
+    for primitive data types we have to use Classes 
+    for these primitive data types
+
+Adding User defined datatypes into java collections 
+
+public class student {
+    private String name;
+    private String id;
+    constructor();
+    setter and getter;
+}
+
+public class Main {
+    public static void main(String args[]){
+        ArrayList<Student> students = new ArrayList<>();
+        students.add(new Student("atharva","7"));
+    }
+}
+
+For each loop in java
+
+for(Student s : students) { // s is object of class Student, student is the list on which we iterate    
+    System.out.println(s.getName());
+}
+
+
+_____________________Static KeyWord in __________________________
+
+
+public class TestClass {
+    public static String name; // when method or varible are declared as static then they belong to object/class it self and not to the instances of that object/class 
+    public int age;
+    public String jskinColor;
+    TestClass(int age,String skinColor){
+        this.age = age;
+        this.skingColor = skinColor;
+    }
+    // there is no constructor field for the static variable in the class
+    // but it does has getter and setters 
+
+}
+
+in main{
+    TestClass = new TestClass(age:25,skinColor:"white");
+    testClass.setName("Meisam"); // this is ok but we can set value for name even if we don't have the object of that class
+    TestClass.name = "Meisam";
+
+}
+
+all instances of the class will have same name field
+if the name filed is declared as static
+
+methods can also be static
+
+Why static members and methods?
+
+Advantages
+
+-> if we want a same field for all instances
+ ie: if company has employee data, then all have same field as 
+     company name so, that can be made as static
+
+-> We can manage memory well and avoid extra space wastages 
+
+Disadvantage
+
+-> Non Static field cannot be referenced from a static context
+meaning-> if we are in a method which is declared as static then we cannot 
+access any non-static field of the class from that method
+
+______________Inner Classes in Java___________________
+
+public class TestClass {
+
+    private int age;
+    private String color;
+
+    private class TestInnerClass {
+        private String name;
+
+        public TestInnerClass(String name){
+            this.name = name;
+        }
+
+        private void printAge(){
+            System.out.println("Age:"+age); // this is totally valid 
+        }
+
+    }
+}
+
+// Uses -> we can have access of private variables also of the parent class in the inner classes
+        -> readability of the code increases 
+        -> we can have private access specifier for a class 
+        -> we can also have static classes
+        private static class TestInnerClass {
+
+        }
+        -> inner classes are useful in async codes 
+
+
+_____________Interfaces and Abstract Classes in Java_____________________
+
+
+Interface are like a contract between two part of our application
+
+public interface CarInterface {
+    public void printName(String name); // this is abstract method, interface can only have abstract methods, we cannot define it's body in interface itself
+    // public modifier is redundant{not necessary}, all methods are by default public, it can't be private or protected abstract methods in interface
+    void start();
+    void move(int speed);
+
+}
+
+// now using this interface 
+
+public class ElectricCar implements CarInterface {  
+    
+    private String name;
+    
+    // we need to implement all the methods {abstrace} of the interface
+    @overrided
+    public void start(){
+        System.out.println("electricity flow stated");
+    }
+    @overrided
+    public void move(int speed) {
+        // function
+    }
+}
+
+in main {
+
+    CarInterface carInterface = new ElectricCar(); // this is validation
+    // we are assigning car interface to ElectricCar instance which is totally valid
+
+    CarInterface.speed(60);
+
+}
+
+One of the method of declaring ArrayList 
+was interface method 
+
+List<String> name = new ArrayList<>();
+
+this List<E> is a interface, E means it accepts any argument
+
+# Contract is that, the class which implements the interface should have 
+  the methods given in the interface details
+
+Uses of Interface 
+    -> We can have multiple inheritance in java
+    -> CallBack interfaces, use full when we use event listners, and connection in between two threads
+    -> we can implement multiple interface for a class, that's multiple inheritance
+
+
+Abstract Classes in Java
+
+public abstract class TestAbstractClass {
+    //has abstract methods
+    public abstract void printName(String name);
+
+    public void print(String text){
+        //working this is valid in this case
+    }
+
+}
+
+// difference in between interface and abstract class 
+
+public class TestClass extends TestAbstractClass {
+
+}
+but for interface we use implements 
+
+-> Abstract class does not support multiple inheritance
+-> Inside abstract we can have non-abstract methods
+
+
+public TestClass extends TestAbstractClass {
+  
+    @override 
+    public void printName(String name) {   
+        // define method here
+    }
+
+}
+
+in main {
+      TestAbstractClass testAbstractClass = new TestClass();
+      testAbstractClass.printName("hello");
+}
+
+// Which one to select, interface or abstract class is very imp, for that go throught the docs on oracle on java
+interface and abstract classes
+
+
 
