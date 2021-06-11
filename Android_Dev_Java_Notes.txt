@@ -1018,5 +1018,15 @@ thus we specify View inside onClick function
 we can add multiple such UI components and pass them to onClick 
 or implement it using View.on_____Listener
 
+// Setting up a LongClickListener -> inside onCreate
+
+        btnHello.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View view) {
+                Toast.makeText(MainActivity.this, ": ))", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
 
 
