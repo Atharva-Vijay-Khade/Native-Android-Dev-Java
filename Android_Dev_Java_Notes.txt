@@ -1028,5 +1028,181 @@ or implement it using View.on_____Listener
             }
         });
 
+___________________________________________________________________________________________________________________________________________________________________________________________
+
+important on relative layout -> the feature android:layout_below in xml is allowed only in relative layout and not in constraint layout
+
+example of setting up xml file 
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/edtText"
+        android:hint="Name"
+        android:textColor="@color/teal_700"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/btnHello"
+        android:text="Hello World"
+        android:textColor="@color/white"
+        android:onClick="onClickBtnHello"
+        android:layout_below="@+id/edtText"
+        android:layout_marginTop="40dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtView"
+        android:layout_below="@+id/btnHello"
+        android:layout_centerInParent="true"
+        android:text="Hello"
+        android:layout_marginTop="20dp"
+        android:textSize="50dp"
+        />
+
+we can have a relative layout inside another the main relative layout, by this we can
+create seperate fields for better layout, example of relative layout inside a relative layout
+and checkbox is as follows
+
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tea"
+            android:text="tea"
+            android:textColor="@color/teal_700"
+            android:layout_centerInParent="true"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="coffee"
+            android:id="@+id/coffee"
+            android:textColor="@color/teal_700"
+            android:layout_toRightOf="@+id/tea"
+            android:layout_marginLeft="40dp"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rice"
+            android:id="@+id/rice"
+            android:textColor="@color/teal_700"
+            android:layout_toLeftOf="@+id/tea"
+            android:layout_marginRight="50dp"
+            />
+
+    </RelativeLayout>
+
+// working with checkbox and relative layout 
+
+package com.example.userinterface;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+
+    private CheckBox tea,coffee,rice;
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            switch (compoundButton.getId()){
+                case R.id.coffee:
+                    if(b==true)
+                        Toast.makeText(this, "You selected coffee", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(this, "coffee rejected", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.rice:
+                    if(b==true)
+                        Toast.makeText(this, "You selected rice", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(this, "rice rejected", Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    break;
+            }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.btnHello:
+                EditText edtTxt = findViewById(R.id.edtText);
+                TextView txtView = findViewById(R.id.txtView);
+                txtView.setText(edtTxt.getText().toString());
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button btnHello = findViewById(R.id.btnHello);
+        btnHello.setOnClickListener(this);
+
+        tea = findViewById(R.id.tea);
+        rice = findViewById(R.id.rice);
+        coffee = findViewById(R.id.coffee);
+
+        if(tea.isChecked()==true){
+            Toast.makeText(this, "You already selected Tea", Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this, "You have not already selected Tea", Toast.LENGTH_SHORT).show();
+
+        if(rice.isChecked()==true){
+            Toast.makeText(this, "You already selected rice", Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this, "You have not already selected rice", Toast.LENGTH_SHORT).show();
+
+        if(coffee.isChecked()==true){
+            Toast.makeText(this, "You already selected coffee", Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this, "You have not already selected coffee", Toast.LENGTH_SHORT).show();
+
+        tea.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b==true){
+                    Toast.makeText(MainActivity.this, "Tea selected", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(MainActivity.this, "Tea rejected", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        rice.setOnCheckedChangeListener(this);
+
+        coffee.setOnCheckedChangeListener(this);
+
+    }
+
+}
+
 
 
