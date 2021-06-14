@@ -1202,7 +1202,273 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
 }
+
+
+
+__________________________
+Working with RadioButton and progress bar 
+
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="50dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rl2"
+        >
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tea"
+            android:text="tea"
+            android:textColor="@color/teal_700"
+            android:layout_centerInParent="true"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="coffee"
+            android:id="@+id/coffee"
+            android:textColor="@color/teal_700"
+            android:layout_toRightOf="@+id/tea"
+            android:layout_marginLeft="40dp"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rice"
+            android:id="@+id/rice"
+            android:textColor="@color/teal_700"
+            android:layout_toLeftOf="@+id/tea"
+            android:layout_marginRight="50dp"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rl3"
+        android:layout_below="@+id/rl2"
+        >
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioGroup1"
+            android:orientation="horizontal">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton1"
+                android:text="Engineer"
+                android:textColor="@color/teal_700"
+                android:layout_marginLeft="20dp"
+                />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton2"
+                android:text="Doctor"
+                android:textColor="@color/teal_700"
+                android:layout_marginLeft="20dp"
+                />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton3"
+                android:text="CA"
+                android:textColor="@color/teal_700"
+                android:layout_marginLeft="20dp"
+                />
+        </RadioGroup>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rl1">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/edtText"
+            android:outlineSpotShadowColor="@color/black"
+            android:visibility="visible"
+            android:id="@+id/progressBar"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/edtText"
+            android:hint="Name"
+            android:textColor="@color/teal_700"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/btnHello"
+            android:text="Hello World"
+            android:textColor="@color/white"
+            android:layout_below="@+id/edtText"
+            android:layout_marginTop="40dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtView"
+            android:layout_below="@+id/btnHello"
+            android:layout_centerInParent="true"
+            android:text="Hello"
+            android:layout_marginTop="20dp"
+            android:textSize="50dp"
+            />
+    </RelativeLayout>
+
+</android.widget.RelativeLayout>
+
+package com.example.userinterface;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+
+    private CheckBox tea,coffee,rice;
+    private RadioGroup radioGroup;
+    private ProgressBar progressBar;
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            switch (compoundButton.getId()){
+                case R.id.coffee:
+                    if(b==true)
+                        Toast.makeText(this, "You selected coffee", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(this, "coffee rejected", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.rice:
+
+                    if(b==true)
+                        Toast.makeText(this, "You selected rice", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(this, "rice rejected", Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    break;
+            }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.btnHello:
+                EditText edtTxt = findViewById(R.id.edtText);
+                TextView txtView = findViewById(R.id.txtView);
+                txtView.setText(edtTxt.getText().toString());
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button btnHello = findViewById(R.id.btnHello);
+        btnHello.setOnClickListener(this);
+
+        tea = findViewById(R.id.tea);
+        rice = findViewById(R.id.rice);
+        coffee = findViewById(R.id.coffee);
+
+        radioGroup = findViewById(R.id.radioGroup1);
+
+        progressBar = findViewById(R.id.progressBar);
+
+        if(tea.isChecked()==true){
+            Toast.makeText(this, "You already selected Tea", Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this, "You have not already selected Tea", Toast.LENGTH_SHORT).show();
+
+        if(rice.isChecked()==true){
+            Toast.makeText(this, "You already selected rice", Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this, "You have not already selected rice", Toast.LENGTH_SHORT).show();
+
+        if(coffee.isChecked()==true){
+            Toast.makeText(this, "You already selected coffee", Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this, "You have not already selected coffee", Toast.LENGTH_SHORT).show();
+
+        tea.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b==true){
+                    Toast.makeText(MainActivity.this, "Tea selected", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(MainActivity.this, "Tea rejected", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        rice.setOnCheckedChangeListener(this);
+
+        coffee.setOnCheckedChangeListener(this);
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch(i){
+                    case R.id.radioButton1:
+                        Toast.makeText(MainActivity.this, "Yay your an engineer", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.radioButton2:
+                        Toast.makeText(MainActivity.this, "Yay your a doctor", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.radioButton3:
+                        Toast.makeText(MainActivity.this, "Yay your a CA", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+    }
+
+}
+
+______________________
+updates on progress bar to { styling it }
+
+
 
 
 
