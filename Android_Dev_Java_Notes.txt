@@ -1468,6 +1468,78 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 ______________________
 updates on progress bar to { styling it }
 
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/edtText"
+            android:visibility="visible"
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            />
+
+        // in MainActivity
+            Thread progressThread = new Thread(new Runnable(){
+        @Override
+        public void run(){
+            while(true){
+            for(int i=0;i<10;i++) {
+                progressBar.incrementProgressBy(10);
+                SystemClock.sleep(200);
+            }
+            progressBar.setProgress(0);
+            }}
+        });
+
+        // in OnCreate 
+        progressThread.start();
+
+___________________________________________________________________________________________________________________________________________________________________________________________
+
+
+Layouts 
+
+1] RelativeLayout : All UI elements are somehow related to each other or they parents 
+ie : special layouts like layout_below, are specially for relative layout 
+
+2] LinearLayout : All the UI elements will be placed one after other
+ie : center_Horizontal, centerInParent such layouts are not allowed in Linear Layout
+it has special attribut
+                       orientation-> vertical or horizontal {in the first left anchor bracker}
+layout_weight = "integer", provides given percentage to the UI component to which is it added 
+# in Linear layout we can have Relative and Constraing layout 
+
+3] ConstraintLayout : We constraint UI elements in this layout, We handel UI element in Design View, 
+
+
+Images 
+
+  <ImageView
+            android:id="@+id/image"
+            android:layout_width="143dp"
+            android:layout_height="121dp"
+            android:layout_above="@id/progressBar"
+            android:layout_marginBottom="36dp"
+            android:src="@mipmap/lord_krishna"
+            android:layout_centerHorizontal="true"
+            />
+We can add images in drawable and mimap folder and to change the app logo we can go to manifest file to 
+change it 
+
+
+
+ListViews
+
+We use ListView layout 
+we also require ArrayList and ArrayAdapter { array adapter is used to fetch the data to our list view }
+we now use recycller view rather than list view because, list view list items can be customized but 
+does not give more flexibility as compared to recycller view, hence list view is placed in legacy folder
+in design and xml side window
+=> Thus we will use recycller views insetead of listviews 
+=> Performance of listview is not good as compared to recycller view 
+
+
+
 
 
 
